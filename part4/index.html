@@ -8,7 +8,29 @@
     <!-- jQuery library reference. Latest is always referenced from jQuery's CDN. -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-		// WRITE YOUR CODE HERE
+        // WRITE YOUR CODE HERE
+        $(document).ready(function () {
+          $.ajax({
+              type: "get",
+              url: "json.js",
+              beforeSend: function () {
+                  $("#result").html("Content Load...");
+              },
+              timeout: 10000,
+              error: function (xhr, status, error) {
+                  window.alert(xhr.status + " " + error);
+              },
+              dataType: "json",
+              success: function (data) {
+                  $("#result").html("");
+                  $.each(data, function () {
+                      $.each(this, function (key, value) {
+                          $("#result").append("<b>" + value.name + "</b>" + "<br>" + value.title + "<br>" + value.bio + "<br><br>");
+                      });
+                  });
+              }
+          });
+      });
     </script>
 </head>
 
@@ -33,6 +55,7 @@
     </section>
     
     <footer></footer>
+    
 </section>
 </body>
 </html>
