@@ -22,7 +22,7 @@
               },
               dataType: "json",
               success: function (data) {
-                  $("#result").html("");
+                  $("#result").html(""); // This part wouldn't work at one point
                   $.each(data, function () {
                       $.each(this, function (key, value) {
                           $("#result").append("<b>" + value.name + "</b>" + "<br>" + value.title + "<br>" + value.bio + "<br><br>");
